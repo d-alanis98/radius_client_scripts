@@ -9,7 +9,7 @@ class Credentials:
     _GATEWAY_URI_KEY             = 'uri_gateway'
     _GATEWAY_SECRET_KEY          = 'secret'
     _CREDENTIALS_FILE_NAME       = 'credentials.json'
-    _DEFAULT_PATH_TO_CREDENTIALS = '../../conf/' + _CREDENTIALS_FILE_NAME
+    _DEFAULT_PATH_TO_CREDENTIALS = '../conf/' + _CREDENTIALS_FILE_NAME
 
     def __init__(
         self, 

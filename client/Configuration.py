@@ -11,7 +11,7 @@ class HostConfiguration():
     RADIUS_SERVER       = 'radius_server'
     NETWORK_INTERFACE   = 'interface' 
     # Private
-    _PATH_TO_HOST_CONFIG = '../../conf/conf.json'
+    _PATH_TO_HOST_CONFIG = '../conf/conf.json'
 
     def __init__(self):
         self.configuration = None

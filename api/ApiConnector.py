@@ -23,6 +23,7 @@ class ApiConnector():
     def get(self, path, parameters = None):
         """HTTP GET method, it receives the path and the optional params."""
         request_path = self.default_path + path
+        print('Requesting to ' + request_path)
         self.session.get(url = request_path, params = parameters)
 
     def post(self, path, body = None):

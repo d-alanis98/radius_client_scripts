@@ -18,6 +18,7 @@ class HostAPSSIDManager():
         command = "sed -n -e 's/^ssid=//p' " + self.PATH_TO_HOSTAPD_CONFIG
         process = subprocess.Popen([command], stdout = subprocess.PIPE, shell = True)
         self.current_ssid = process.stdout.read()
+        print(self.current_ssid)
 
     def update_ssid(self, ssid_to_update):
         """
@@ -26,8 +27,10 @@ class HostAPSSIDManager():
         This method compares the received SSID, if it is different from the current one, the hostapd.conf
         file us going to be updated with the new value and the service hostpad is ging to be restarted.
         """
+        print(ssid_to_update)
         # We are only going to update the file and restart the service if the SSID is different
         if self.__is_ssid_the_same(ssid_to_update):
+            print('SSID is the same')
             return
         os.system("sed -i 's/^ssid=.*/ssid=" + ssid_to_update + "/' " + self.PATH_TO_HOSTAPD_CONFIG)
         os.system('service hostapd restart')

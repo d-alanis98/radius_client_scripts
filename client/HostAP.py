@@ -27,9 +27,9 @@ class HostAPSSIDManager():
         This method compares the received SSID, if it is different from the current one, the hostapd.conf
         file us going to be updated with the new value and the service hostpad is ging to be restarted.
         """
-        print(ssid_to_update)
+        print('SSID to update = ' + ssid_to_update)
         # We are only going to update the file and restart the service if the SSID is different
-        if self.__is_ssid_the_same(ssid_to_update):
+        if self.__is_ssid_the_same(ssid_to_update) or ssid_to_update == None:
             print('SSID is the same')
             return
         os.system("sed -i 's/^ssid=.*/ssid=" + ssid_to_update + "/' " + self.PATH_TO_HOSTAPD_CONFIG)

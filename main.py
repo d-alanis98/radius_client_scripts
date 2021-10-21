@@ -17,6 +17,7 @@ if __name__ == '__main__':
             default_path = radius_server_url
         )
         received_ssid = api_connector.get('/gateways/' + credentials[0] + '/current_ssid')
+        print('Received SSID from AI = ' + received_ssid)
         # We are going to update thisvalue (if needed) via a HostAPSSIDManager instance
         ssid_manager = HostAPSSIDManager()
         # We set the current SSID value from the file

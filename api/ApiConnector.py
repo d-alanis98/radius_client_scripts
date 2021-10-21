@@ -1,13 +1,13 @@
 from requests import Session
 
-class ApiConnector(Session):
+class ApiConnector():
 
     def __init__(
         self, 
         credentials,
         default_path = ''
     ):
-        super(Session, self).__init__()
+        self.session = Session()
         # We set the parameters
         self.credentials = credentials
         self.default_path = default_path
@@ -16,24 +16,24 @@ class ApiConnector(Session):
 
     def __set_authentication(self):
         """Sets the authentication for the session"""
-        super(Session, self).auth = self.credentials
+        self.session.auth = self.credentials
 
     # HTTP methods
 
     def get(self, path, parameters = None):
         """HTTP GET method, it receives the path and the optional params."""
         request_path = self.default_path + path
-        super(Session, self).get(url = request_path, params = parameters)
+        self.session.get(url = request_path, params = parameters)
 
     def post(self, path, body = None):
         """HTTP POST method, it receives the path and the body of the request."""
         request_path = self.default_path + path
-        super(Session, self).post(url = request_path, data = body)
+        self.session.post(url = request_path, data = body)
 
     def put(self, path, body = None):
         """HTTP PUT method, it receives the path and the body of the request."""
         request_path = self.default_path + path
-        super(Session, self).put(url = request_path, data = body)
+        self.session.put(url = request_path, data = body)
 
     
 

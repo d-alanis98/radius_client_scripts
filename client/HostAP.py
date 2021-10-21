@@ -1,16 +1,17 @@
 import os
 import sys
-from DEV_DATA.radius_client.scripts.client.Configuration import HostConfiguration
+# API
 from api.Credentials import Credentials
 from api.ApiConnector import ApiConnector
-
+# Host configuration
+from client.Configuration import HostConfiguration
 
 
 
 class HostAPSSIDManager():
     """
     @author Damian Alanis Ramirez
-    @version 0.0.1
+    @version 0.0.2
     @description Class to manage the SSID of the hotspot. It provides methods to
     get the current SSID from the file (hostapd.conf) and to update it.
     """
@@ -43,13 +44,13 @@ class HostAPSSIDManager():
 if __name__ == '__main__':
     try:
         credentials = Credentials().get_as_tuple()
-        radius_server_url = HostConfiguration().get_radius_server()
+        radius_server_url = HostConfiguration().get_radius_server() + 'IoT'
         # We request the current SSID to the server
         api_connector = ApiConnector(
             credentials,
             default_path = radius_server_url
         )
-        received_ssid = api_connector.get('current_ssid')
+        received_ssid = api_connector.get('/gateways/' + credentials[0] + '/current_ssid')
         # We are going to update thisvalue (if needed) via a HostAPSSIDManager instance
         ssid_manager = HostAPSSIDManager()
         # We set the current SSID value from the file

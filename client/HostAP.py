@@ -1,12 +1,4 @@
 import os
-import sys
-# API
-from api.Credentials import Credentials
-from api.ApiConnector import ApiConnector
-# Host configuration
-from client.Configuration import HostConfiguration
-
-
 
 class HostAPSSIDManager():
     """
@@ -40,24 +32,3 @@ class HostAPSSIDManager():
     # Validations
     def __is_ssid_the_same(self, ssid_to_compare):
         return self.current_ssid == ssid_to_compare
-
-if __name__ == '__main__':
-    try:
-        credentials = Credentials().get_as_tuple()
-        radius_server_url = HostConfiguration().get_radius_server() + 'IoT'
-        # We request the current SSID to the server
-        api_connector = ApiConnector(
-            credentials,
-            default_path = radius_server_url
-        )
-        received_ssid = api_connector.get('/gateways/' + credentials[0] + '/current_ssid')
-        # We are going to update thisvalue (if needed) via a HostAPSSIDManager instance
-        ssid_manager = HostAPSSIDManager()
-        # We set the current SSID value from the file
-        ssid_manager.set_current_ssid_from_file()
-        # We update the SSID (if the obtained from the API call is different from the current one in hostapd)
-        ssid_manager.update_ssid(ssid_to_update = received_ssid)
-    except Exception as exception:
-        # We log the failure
-        print(exception)
-        sys.stderr.write(exception)

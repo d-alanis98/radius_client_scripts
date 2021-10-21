@@ -15,10 +15,10 @@ class HostAPSSIDManager():
 
     def set_current_ssid_from_file(self):
         """Sets the current SSID from the value present in the hostapd.conf"""
-        command = "sed -n -e 's/^ssid=//p' " + self.PATH_TO_HOSTAPD_CONFIG
+        # We search the valu by a regular expression
+        command = "sed -n -e 's/^ssid=(.*)$//p' " + self.PATH_TO_HOSTAPD_CONFIG
         process = subprocess.Popen([command], stdout = subprocess.PIPE, shell = True)
         self.current_ssid = process.stdout.read().strip()
-        print('Obtained SSID from file = \'' + self.current_ssid + '\'')
 
     def update_ssid(self, ssid_to_update):
         """

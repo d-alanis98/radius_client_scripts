@@ -23,18 +23,17 @@ class ApiConnector():
     def get(self, path, parameters = None):
         """HTTP GET method, it receives the path and the optional params."""
         request_path = self.default_path + path
-        print('Requesting to ' + request_path)
-        self.session.get(url = request_path, params = parameters)
+        return self.session.get(url = request_path, params = parameters)
 
     def post(self, path, body = None):
         """HTTP POST method, it receives the path and the body of the request."""
         request_path = self.default_path + path
-        self.session.post(url = request_path, data = body)
+        return self.session.post(url = request_path, data = body)
 
     def put(self, path, body = None):
         """HTTP PUT method, it receives the path and the body of the request."""
         request_path = self.default_path + path
-        self.session.put(url = request_path, data = body)
+        return self.session.put(url = request_path, data = body)
 
     
 

@@ -8,7 +8,7 @@ from client.Configuration import HostConfiguration
 from client.HostAP import HostAPSSIDManager
 
 if __name__ == '__main__':
-    try:
+
         credentials = Credentials().get_as_tuple()
         radius_server_url = HostConfiguration().get_radius_server() + 'IoT'
         # We request the current SSID to the server
@@ -17,6 +17,9 @@ if __name__ == '__main__':
             default_path = radius_server_url
         )
         received_ssid = api_connector.get('/gateways/' + credentials[0] + '/current_ssid')
+        if not received_ssid:
+            print('SSID received null')
+            exit(1)
         print('Received SSID from AI = ' + received_ssid)
         # We are going to update thisvalue (if needed) via a HostAPSSIDManager instance
         ssid_manager = HostAPSSIDManager()
@@ -24,6 +27,3 @@ if __name__ == '__main__':
         ssid_manager.set_current_ssid_from_file()
         # We update the SSID (if the obtained from the API call is different from the current one in hostapd)
         ssid_manager.update_ssid(ssid_to_update = received_ssid)
-    except Exception as exception:
-        # We log the failure
-        print(exception)

@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 class HostAPSSIDManager():
     """
@@ -14,7 +15,9 @@ class HostAPSSIDManager():
 
     def set_current_ssid_from_file(self):
         """Sets the current SSID from the value present in the hostapd.conf"""
-        self.current_ssid = os.system("sed -n -e 's/^ssid=//p' " + self.PATH_TO_HOSTAPD_CONFIG)
+        command = "sed -n -e 's/^ssid=//p' " + self.PATH_TO_HOSTAPD_CONFIG
+        process = subprocess.Popen([command], stdout = subprocess.PIPE, shell = True)
+        self.current_ssid = process.stdout.read()
 
     def update_ssid(self, ssid_to_update):
         """

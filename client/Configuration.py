@@ -2,7 +2,7 @@ import json
 
 class HostConfiguration():
     """
-    @version 0.0.1
+    @version 1.0.1
     @author Damian Alanis Ramirez
     @description Dataclass that contains the configuration for the device
     running it.

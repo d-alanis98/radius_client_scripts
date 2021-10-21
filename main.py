@@ -16,7 +16,12 @@ if __name__ == '__main__':
             credentials,
             default_path = radius_server_url
         )
-        received_ssid = api_connector.get('/gateways/' + credentials[0] + '/current_ssid').text
+        response = api_connector.get('/gateways/' + credentials[0] + '/current_ssid')
+        # We validate that we got a status 2xx (success)
+        if response.status_code // 200 != 1:
+            raise Exception(response.text)
+        # We get the SSID from the response
+        received_ssid = response.text
         # We are going to update thisvalue (if needed) via a HostAPSSIDManager instance
         ssid_manager = HostAPSSIDManager()
         # We set the current SSID value from the file

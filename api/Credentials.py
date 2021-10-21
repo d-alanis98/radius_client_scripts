@@ -2,7 +2,7 @@ import json
 
 class Credentials:
     """
-    @version 0.0.1
+    @version 1.0.1
     @author Damian Alanis
     @description Class to manage 
     """

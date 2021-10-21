@@ -4,7 +4,7 @@ import subprocess
 class HostAPSSIDManager():
     """
     @author Damian Alanis Ramirez
-    @version 0.0.2
+    @version 1.0.2
     @description Class to manage the SSID of the hotspot. It provides methods to
     get the current SSID from the file (hostapd.conf) and to update it.
     """

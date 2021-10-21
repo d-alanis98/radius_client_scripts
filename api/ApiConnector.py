@@ -1,6 +1,11 @@
 from requests import Session
 
 class ApiConnector():
+    """
+    @author Damian Alanis Ramirez
+    @version 1.0.1
+    @description Facade for API calls, with credentials and default path (or path prefix) support.
+    """
 
     def __init__(
         self, 

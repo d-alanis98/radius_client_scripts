@@ -2,11 +2,11 @@ import json
 
 class Credentials:
     """
-    @version 1.0.1
+    @version 1.0.2
     @author Damian Alanis
     @description Class to manage 
     """
-    _GATEWAY_URI_KEY             = 'uri_gateway'
+    _GATEWAY_URI_KEY             = 'uri'
     _GATEWAY_SECRET_KEY          = 'secret'
     _CREDENTIALS_FILE_NAME       = 'credentials.json'
     _DEFAULT_PATH_TO_CREDENTIALS = '../conf/' + _CREDENTIALS_FILE_NAME

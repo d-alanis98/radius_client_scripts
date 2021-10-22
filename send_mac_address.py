@@ -24,6 +24,5 @@ if __name__ == '__main__':
         response = api_connector.put('/gateways/' + credentials[0] + '/validate_mac')
         if response.status_code // 200 != 1:
             raise Exception(response.text)
-        print(response.text)
     except Exception as exception:
         print(exception)

@@ -75,7 +75,7 @@ class HostAPNetworkManager():
         command applied to that interface. The result is stored in the dictionary, so that it can be 
         retrieved by the interface as key.
         """
-        command = "ip addr show " + interface + " | sed -n -e 's/link\/ether//p'"
+        command = "cat /sys/class/net/" + interface + "/address"
         process = subprocess.Popen([command], stdout = subprocess.PIPE, shell = True)
         self.mac_addresses[interface] = process.stdout.read().strip()
 

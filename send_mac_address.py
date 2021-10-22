@@ -22,7 +22,7 @@ if __name__ == '__main__':
         device_mac_address = network_manager.get_mac_address(configuration.get_network_interface())
         # We send the MAC address to the server for validation
         response = api_connector.put('/gateways/' + credentials[0] + '/validate_mac')
-        if response // 200 != 1:
+        if response.status_code // 200 != 1:
             raise Exception(response.text)
         print(response.text)
     except Exception as exception:

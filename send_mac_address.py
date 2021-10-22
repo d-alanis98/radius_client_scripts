@@ -18,6 +18,12 @@ if __name__ == '__main__':
         )
         # We are going to get the current mac (in file) via a HostAPNetworkManager instance
         network_manager = HostAPNetworkManager()
-        print(network_manager.get_mac_address(configuration.get_network_interface()))
+        # We get the MAC address for the interface specified in the configuration
+        device_mac_address = network_manager.get_mac_address(configuration.get_network_interface())
+        # We send the MAC address to the server for validation
+        response = api_connector.put('/gateways/' + credentials[0] + '/validate_mac')
+        if response // 200 != 1:
+            raise Exception(response.text)
+        print(response.text)
     except Exception as exception:
         print(exception)
